@@ -1,1 +1,6 @@
-{}
+{
+  "get_details": "Get Details",
+  "text_nothing_found": "Nothing found",
+  "text_something_went_wrong": "something went wrong",
+  "text_music_list": "Music List"
+}

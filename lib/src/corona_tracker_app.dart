@@ -29,9 +29,10 @@ class _CoronaTrackerAppState extends State<CoronaTrackerApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
-          primaryColor: Colors.black,
-          primaryColorDark: ColorConstants.input_bg_color_dark,
-          accentColor: Colors.grey,
+          primarySwatch: Colors.blue,
+//          primaryColor: Colors.black,
+//          primaryColorDark: ColorConstants.input_bg_color_dark,
+//          accentColor: Colors.grey,
           fontFamily: 'Poppins'),
       localizationsDelegates: [
         S.delegate,

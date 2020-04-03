@@ -1,3 +1,4 @@
+import 'package:corona_trac_helper/src/infra/network/model/home/corona_response_data.dart';
 import 'package:dio/dio.dart';
 import 'package:corona_trac_helper/src/base/base_repository.dart';
 import 'package:corona_trac_helper/src/data/model/home/music_data/music_model.dart';
@@ -10,11 +11,11 @@ class CoronaHomeScreenRepository extends BaseRepository {
 
   CoronaHomeScreenRepository(this._webServices);
 
-  Future<ParsedResponse<MusicDataResponse>> fetchMusicData() async {
+  Future<ParsedResponse<CoronaResponseData>> fetchCoronaHomeData() async {
     try {
-      Response response = await _webServices.doGetApiCall(UrlConstants.music_data);
+      Response response = await _webServices.doGetApiCall(UrlConstants.corona_home_data);
       if(response != null && response.statusCode == BaseRepository.HTTP_OK) {
-        return ParsedResponse.addData(MusicDataResponse.fromJson(response.data));
+        return ParsedResponse.addData(CoronaResponseData.fromJson(response.data));
       } else {
         return Future.value(ParsedResponse.addError(handleHttpErrorResponse(response)));
       }

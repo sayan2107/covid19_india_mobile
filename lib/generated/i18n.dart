@@ -22,7 +22,7 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get get_details => "Get Details";
-  String get text_music_list => "Music List";
+  String get text_dashboard_title => "Dashboard";
   String get text_nothing_found => "Nothing found";
   String get text_something_went_wrong => "something went wrong";
 }

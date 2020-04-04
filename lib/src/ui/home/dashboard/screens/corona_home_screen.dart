@@ -4,11 +4,6 @@ import 'package:corona_trac_helper/src/data/model/parsed_response.dart';
 import 'package:corona_trac_helper/src/infra/network/model/home/corona_response_data.dart';
 import 'package:corona_trac_helper/src/ui/common/utils/text_utils.dart';
 import 'package:corona_trac_helper/src/ui/home/dashboard/bloc/corona_home_screen_bloc.dart';
-import 'package:corona_trac_helper/src/ui/home/dashboard/data/data.dart';
-import 'package:corona_trac_helper/src/ui/home/dashboard/models/categorie_model.dart';
-import 'package:corona_trac_helper/src/ui/home/dashboard/models/product_model.dart';
-import 'package:corona_trac_helper/src/ui/home/dashboard/models/trending_productmodel.dart';
-import 'package:corona_trac_helper/src/ui/home/dashboard/widgets/home_layout_widget.dart';
 import 'package:corona_trac_helper/src/utility/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:corona_trac_helper/src/base/ui_event.dart';
@@ -40,17 +35,11 @@ class _CoronaHomeScreenInternal extends StatefulWidget {
 
 class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with CommonWidget{
   GlobalKey<ScaffoldState> _scafoldKey = GlobalKey();
-  List<TrendingProductModel> trendingProducts = new List();
-  List<ProductModel> products = new List();
-  List<CategorieModel> categories = new List();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-//    trendingProducts = getTrendingProducts();
-//    products = getProducts();
-//    categories = getCategories();
   }
 
   Future<void> _onRefreshBalance() async {
@@ -108,7 +97,7 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                                 fontSize: 22
                             ),),
                             SizedBox(width: 12,),
-                            Text(coronaResponseData.keyValues[0].lastupdatedtime)
+                            Text("On: ${coronaResponseData.keyValues[0].lastupdatedtime}")
                           ],
                         ),
                       ),
@@ -258,7 +247,7 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                       ),
                       SizedBox(height: 10,),
                       buildStateWiseDropDownList(coronaResponseData.statewise),
-                      SizedBox(height: 50,),
+//                      SizedBox(height: 50,),
 //                    Container(
 //                      height: 120,
 //                      padding: EdgeInsets.only(left: 22),

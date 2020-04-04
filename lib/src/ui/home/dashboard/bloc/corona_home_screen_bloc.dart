@@ -24,9 +24,15 @@ class CoronaHomeScreenBloc extends BaseBloc {
   BehaviorSubject<CoronaResponseData> _coronaHomeDataStreamController = BehaviorSubject();
   Stream<CoronaResponseData> get coronaHomeDataStream => _coronaHomeDataStreamController.stream;
 
+  BehaviorSubject<Map<String, dynamic>> _stateDistrictWiseDataStreamController = BehaviorSubject();
+  Stream<Map<String, dynamic>> get stateDistrictWiseDataStream => _stateDistrictWiseDataStreamController.stream;
 
-  void getCoronaHomeData() async {
-      _uiEventStreamController.add(LoadingScreenUiEvent(true));
+  ParsedResponse<Map<String, dynamic>> stateDistrictWisedata;
+
+
+  void getCoronaHomeData({bool showLoader=true}) async {
+      _uiEventStreamController.add(LoadingScreenUiEvent(showLoader));
+      getStateDistrictWiseData();
       ParsedResponse<CoronaResponseData> coronaHomeDataResponse = await _coronaHomeDataRepository.fetchCoronaHomeData();
       _uiEventStreamController.add(LoadingScreenUiEvent(false));
       if(coronaHomeDataResponse.hasData) {
@@ -35,6 +41,18 @@ class CoronaHomeScreenBloc extends BaseBloc {
         _uiEventStreamController.add(SnackBarEvent(coronaHomeDataResponse.error.message));
       }
     }
+
+  void getStateDistrictWiseData() async {
+    //_uiEventStreamController.add(LoadingScreenUiEvent(true));
+    ParsedResponse<Map<String, dynamic>> stateDistrictWiseDataResponse = await _coronaHomeDataRepository.fetchStateDistrictWiseData();
+    stateDistrictWisedata = stateDistrictWiseDataResponse;
+    //_uiEventStreamController.add(LoadingScreenUiEvent(false));
+    if(stateDistrictWiseDataResponse.hasData) {
+      _stateDistrictWiseDataStreamController.add(stateDistrictWiseDataResponse.data);
+    } else {
+     // _uiEventStreamController.add(SnackBarEvent(stateDistrictWiseDataResponse.error.message));
+    }
+  }
 
   void redirectToMusicDetails(Results result) {
     _uiEventStreamController.add(NavigateToDetails(result));
@@ -45,6 +63,7 @@ class CoronaHomeScreenBloc extends BaseBloc {
   @override
   void onDispose() {
     _uiEventStreamController.close();
+    _stateDistrictWiseDataStreamController.close();
     _coronaHomeDataStreamController.close();
   }
 

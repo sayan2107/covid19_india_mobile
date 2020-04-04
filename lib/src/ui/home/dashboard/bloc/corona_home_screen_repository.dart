@@ -24,4 +24,17 @@ class CoronaHomeScreenRepository extends BaseRepository {
     }
   }
 
+  Future<ParsedResponse<Map<String, dynamic>>> fetchStateDistrictWiseData() async {
+    try {
+      Response response = await _webServices.doGetApiCall(UrlConstants.corona_state_district_wise_data);
+      if(response != null && response.statusCode == BaseRepository.HTTP_OK) {
+        return ParsedResponse.addData(response.data);
+      } else {
+        return Future.value(ParsedResponse.addError(handleHttpErrorResponse(response)));
+      }
+    } on DioError catch(e) {
+      return Future.value(ParsedResponse.addError(handleDioError(e)));
+    }
+  }
+
 }

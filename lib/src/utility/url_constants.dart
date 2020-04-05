@@ -1,5 +1,5 @@
 class UrlConstants {
-  static const String my_github_profile_link = "https://github.com/sayan2107/Corona_tracker";
+  static const String my_github_profile_link = "https://github.com/sayan2107/covid19_india_mobile";
   static const String covid19_org_url = "https://www.covid19india.org/";
   static const String patient_db_url = "https://bit.ly/patientdb";
   static const String my_linkedin_profile_link = "https://www.linkedin.com/in/sayon-mazumder/";

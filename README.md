@@ -1,4 +1,4 @@
-# Covir-19 India Mobile Application
+# Covid-19 India Mobile Application
 
 ## Preview
 <p float="left">
@@ -12,9 +12,9 @@
 <a href="https://www.linkedin.com/in/sayon-mazumder/">
     <img src="https://img.shields.io/badge/Support-Recommed%2FEndorse%20me%20on%20Linkedin-blue?style=for-the-badge&logo=linkedin" alt="Recommend me on LinkedIn"/></a>  
     
-## Covir-19 India Mobile App, Build with ❤  Flutter
+## Covid-19 India Mobile App, Build with ❤  Flutter
 Flutter is a cross platform Mobile Application development framework by google.
-'Covir-19 India' is a Android application build with flutter which will help you to find the status of Corona Virus in india. 
+'Covid-19 India' is a Android application build with flutter which will help you to find the status of Corona Virus in india. 
 
 ## Setup Process
 Make sure you have Flutter sdk installed in your system along with android studio and system environments are setted up, can visit the following link to visit <a href="https://flutter.dev/docs">flutter docs</a>

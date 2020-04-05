@@ -1,4 +1,4 @@
-# Covir19 India Mobile Application
+# Covir-19 India Mobile Application
 
 ## Preview
 <p float="left">
@@ -28,7 +28,7 @@ Make sure you have Flutter sdk installed in your system along with android studi
 Facing any problem? you can go through the flutter official documentation to get started <a href="https://flutter.dev/docs/get-started/install">Click here</a>
 
 
-Still Facing Problems? contact me at [LinkedIn](https://www.linkedin.com/in/sayaon-mazumder/). I will be happy to help.
+Still Facing Problems? contact me at [LinkedIn](https://www.linkedin.com/in/sayon-mazumder/). I will be happy to help.
 
 Don't forget to star ⭐ the repo 😉, it will keep me motivated to go forward.
 

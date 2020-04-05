@@ -3,7 +3,7 @@
 ## Preview
 <p float="left">
   <img src="https://github.com/sayan2107/Corona_tracker/blob/master/screenshots/Screenshot_2020-04-05-15-54-33-13_f3c897f8659a649c8689541e4eb50ead.jpg" width="200" height="370" />
-  <img src="https://github.com/sayan2107/Corona_tracker/blob/master/screenshots/Screenshot_2020-04-05-15-54-45-36_f3c897f8659a649c8689541e4eb50ead.jpg" width="200" height="370"  /> 
+  <img src="https://github.com/sayan2107/Corona_tracker/blob/master/screenshots/Screenshot_2020-04-05-21-15-58-02_f3c897f8659a649c8689541e4eb50ead" width="200" height="370"  /> 
   <img src="https://github.com/sayan2107/Corona_tracker/blob/master/screenshots/Screenshot_2020-04-05-16-28-17-74_f3c897f8659a649c8689541e4eb50ead.jpg" width="200" height="370"  />
   <img src="https://github.com/sayan2107/Corona_tracker/blob/master/screenshots/Screenshot_2020-04-05-20-21-11-75_f3c897f8659a649c8689541e4eb50ead.jpg" width="200" height="370"  />
 </p>  

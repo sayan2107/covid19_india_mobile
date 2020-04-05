@@ -49,8 +49,7 @@ class CoronaHomeScreenBloc extends BaseBloc {
        for(int i=0; i<stateWiseData.length; i++){
          List<Entry> districtData=[];
          Map<String, dynamic> stateData = stateDistrictWiseData?.data[stateWiseData[i]?.state];
-         StateWiseResponse
-         obj=StateWiseResponse();
+         StateWiseResponse obj=StateWiseResponse();
          if(stateData!=null){
            obj = StateWiseResponse.fromJson(stateData);
          }

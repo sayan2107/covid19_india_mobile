@@ -7,6 +7,7 @@ import 'package:corona_trac_helper/src/ui/home/dashboard/models/corona_home_help
 import 'package:corona_trac_helper/src/utility/asset_constants.dart';
 import 'package:corona_trac_helper/src/utility/color_constants.dart';
 import 'package:corona_trac_helper/src/utility/url_constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:corona_trac_helper/src/base/ui_event.dart';
 import 'package:corona_trac_helper/src/infra/bloc/bloc_provider.dart';
@@ -146,7 +147,7 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
 
               SizedBox(height: 20,),
               ListTile(
-                title: Text('About me: \nName: Sayon Mazumder\nAge: 25\nWant to know more about me?'),
+                title: Text('About me: \nName: Sayon Mazumder\nWant to know more about me?'),
               ),
 
               ListTile(
@@ -216,7 +217,7 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      SizedBox(height: 20,),
+                      SizedBox(height: 10,),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 22),
                         child: Row(
@@ -226,7 +227,7 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                                 color: Colors.black87,
                                 fontSize: 22
                             ),),
-                            SizedBox(width: 12,),
+                            SizedBox(width: 10,),
                             Expanded(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -291,10 +292,22 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                                       "Confirmed",
                                       style: TextStyle(color: Colors.white, fontSize: 16),
                                     ),
-                                    Text(
-                                      " ${ coronaResponseData.statewise[0].confirmed}",
-                                      style: TextStyle(color: Colors.white, fontSize: 20),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          " ${ coronaResponseData.statewise[0].confirmed}",
+                                          style: TextStyle(color: Colors.white, fontSize: 18),
+                                        ),
+                                        Text(
+                                          " [+${coronaResponseData.statewise[0].deltaconfirmed}]",
+                                          style: TextStyle(color: Colors.white, fontSize: 13),
+                                        )
+
+                                      ],
                                     ),
+
                                   ],
                                 ),
                                 color: ColorConstants.confirmed_color_dark,
@@ -327,9 +340,18 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                                       "Recovered",
                                       style: TextStyle(color: Colors.white, fontSize: 16),
                                     ),
-                                    Text(
-                                      " ${ coronaResponseData.statewise[0].recovered}",
-                                      style: TextStyle(color: Colors.white, fontSize: 20),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          " ${ coronaResponseData.statewise[0].recovered}",
+                                          style: TextStyle(color: Colors.white, fontSize: 20),
+                                        ),
+                                        Text(
+                                          " [+${coronaResponseData.statewise[0].deltarecovered}]",
+                                          style: TextStyle(color: Colors.white, fontSize: 13),
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -344,9 +366,18 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                                     Text("Deaths",
                                       style: TextStyle(color: Colors.white, fontSize: 16),
                                     ),
-                                    Text(
-                                      " ${ coronaResponseData.statewise[0].deaths}",
-                                      style: TextStyle(color: Colors.white, fontSize: 20),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          " ${ coronaResponseData.statewise[0].deaths}",
+                                          style: TextStyle(color: Colors.white, fontSize: 20),
+                                        ),
+                                        Text(
+                                          " [+${coronaResponseData.statewise[0].deltadeaths}]",
+                                          style: TextStyle(color: Colors.white, fontSize: 13),
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -466,6 +497,9 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
               activeCases: topAffectedStateList[index].active,
               deathCases: topAffectedStateList[index].deaths,
               recovCases: topAffectedStateList[index].recovered,
+              affectedToday: topAffectedStateList[index].deltaconfirmed,
+              deathsToday: topAffectedStateList[index].deltadeaths,
+              recoveredToday: topAffectedStateList[index].deltarecovered,
             );
           }),
     );
@@ -503,12 +537,14 @@ class TopAffectedStateTile extends StatelessWidget {
   String recovCases;
   String deathCases;
   String affectedToday;
-  TopAffectedStateTile({this.stateName,this.confirmedCases, this.activeCases, this.deathCases, this.recovCases, this.affectedToday="120"});
+  String recoveredToday;
+  String deathsToday;
+  TopAffectedStateTile({this.stateName,this.confirmedCases, this.activeCases, this.deathCases, this.recovCases, this.affectedToday, this.deathsToday, this.recoveredToday});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width - 120,
+      width: MediaQuery.of(context).size.width - 110,
       margin: EdgeInsets.only(right: 13),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -536,75 +572,92 @@ class TopAffectedStateTile extends StatelessWidget {
                         fontSize: 19),
                     ),
                     SizedBox(width: 10,),
-//                    Icon(Icons.arrow_upward,color: ColorConstants.confirmed_color_dark,),
-//                    Text("120", style: TextStyle(color: ColorConstants.confirmed_color_dark),)
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.arrow_upward,color: ColorConstants.confirmed_color_dark,size: 14,),
+                        Text("${affectedToday}", style: TextStyle(color: ColorConstants.confirmed_color_dark),),
+                        SizedBox(width: 5,),
+                        Icon(Icons.arrow_upward,color: ColorConstants.recovered_color_dark,size: 14,),
+                        Text("${recoveredToday}", style: TextStyle(color: ColorConstants.recovered_color_dark),),
+                        SizedBox(width: 5,),
+                        Icon(Icons.arrow_upward,color: ColorConstants.death_color_dark,size: 14,),
+                        Text("${deathsToday}", style: TextStyle(color: ColorConstants.death_color_dark),)
+                      ],
+                    )
+
                   ],
                 ),
-
                 SizedBox(height: 8,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      height: 30,
-                      padding: EdgeInsets.symmetric(horizontal: 12),alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4) ,
-                          color: ColorConstants.confirmed_color_dark
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Container(
+                        width: 45,
+                        height: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4) ,
+                            color: ColorConstants.confirmed_color_dark
+                        ),
+                        child: Text(
+                          "${confirmedCases}", style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.white
+                        ),
+                        ),
                       ),
-                      child: Text(
-                        "${confirmedCases}", style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.white
+                      SizedBox(width: 8,),
+                      Container(
+                        width: 45,
+                        height: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4) ,
+                            color: ColorConstants.active_color_dark
+                        ),
+                        child: Text(
+                          "${activeCases}", style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.white
+                        ),
+                        ),
                       ),
+                      SizedBox(width: 8,),
+                      Container(
+                        width: 45,
+                        height: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4) ,
+                            color: ColorConstants.recovered_color_dark
+                        ),
+                        child: Text(
+                          "${recovCases}", style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.white
+                        ),
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 8,),
-                    Container(
-                      height: 30,
-                      padding: EdgeInsets.symmetric(horizontal: 12),alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4) ,
-                          color: ColorConstants.active_color_dark
+                      SizedBox(width: 8,),
+                      Container(
+                        width: 45,
+                        height: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4) ,
+                            color: ColorConstants.death_color_dark
+                        ),
+                        child: Text(
+                          "${deathCases}", style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.white
+                        ),
+                        ),
                       ),
-                      child: Text(
-                        "${activeCases}", style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.white
-                      ),
-                      ),
-                    ),
-                    SizedBox(width: 8,),
-                    Container(
-                      height: 30,
-                      padding: EdgeInsets.symmetric(horizontal: 12),alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4) ,
-                          color: ColorConstants.recovered_color_dark
-                      ),
-                      child: Text(
-                        "${recovCases}", style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.white
-                      ),
-                      ),
-                    ),
-                    SizedBox(width: 8,),
-                    Container(
-                      height: 30,
-                      padding: EdgeInsets.symmetric(horizontal: 12),alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4) ,
-                          color: ColorConstants.death_color_dark
-                      ),
-                      child: Text(
-                        "${deathCases}", style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.white
-                      ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
               ],
             ),

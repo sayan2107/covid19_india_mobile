@@ -1,16 +1,17 @@
-import 'dart:convert';
 import 'package:corona_trac_helper/generated/i18n.dart';
-import 'package:corona_trac_helper/src/data/model/parsed_response.dart';
 import 'package:corona_trac_helper/src/infra/network/model/home/corona_response_data.dart';
+import 'package:corona_trac_helper/src/ui/common/services/common_services.dart';
 import 'package:corona_trac_helper/src/ui/common/utils/text_utils.dart';
 import 'package:corona_trac_helper/src/ui/home/dashboard/bloc/corona_home_screen_bloc.dart';
+import 'package:corona_trac_helper/src/ui/home/dashboard/models/corona_home_helper_models.dart';
+import 'package:corona_trac_helper/src/utility/asset_constants.dart';
 import 'package:corona_trac_helper/src/utility/color_constants.dart';
+import 'package:corona_trac_helper/src/utility/url_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:corona_trac_helper/src/base/ui_event.dart';
 import 'package:corona_trac_helper/src/infra/bloc/bloc_provider.dart';
 import 'package:corona_trac_helper/src/infra/bloc/event_listener.dart';
 import 'package:corona_trac_helper/src/ui/common/widgets/widget_mixin.dart';
-import 'package:get_it/get_it.dart';
 
 class CoronaHomeScreen extends StatelessWidget {
   static const ROUTE_NAME = "/corona_home_screen_route";
@@ -51,6 +52,27 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
     return null;
   }
 
+  Widget socialMediaBtn(ButtonStyleConfig config){
+    return SizedBox(
+      width: double.infinity,
+      child: RaisedButton(
+        color: config.btnColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            genericAssetIconContainer(config.iconPath),
+            SizedBox(width: 5,),
+            Text(config.title.toUpperCase(),style: TextStyle(color: config.btnTextColor),),
+          ],
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+        onPressed: config.onClickFunction,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return EventListener(
@@ -59,9 +81,117 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
           .uiEventStream,
       handleEvent,
       child: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                child: Center(child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Want to join with me?\nOpen Source On:",style: TextStyle(color: Colors.white),),
+                    socialMediaBtn(
+                        ButtonStyleConfig(
+                          title: "github",
+                          iconPath: AssetConstants.ic_github_logo,
+                          btnColor: Colors.white,
+                          btnTextColor: Colors.black,
+                          onClickFunction: (){CommonServices.launchURL(UrlConstants.my_github_profile_link);}
+                        )
+                    ),
+//                    socialMediaBtn(
+//                        ButtonStyleConfig(
+//                            title: "LinkedIn",
+//                            iconPath: AssetConstants.ic_nothing_found,
+//                            btnColor: Colors.black12,
+//                            btnTextColor: Colors.white,
+//                            onClickFunction: (){CommonServices.launchURL(UrlConstants.my_linkedin_profile_link);}
+//                        )
+//                    ),
+                  ],
+                )),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+              ),
+
+              ListTile(
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('Thanks to:'),
+                    socialMediaBtn(
+                        ButtonStyleConfig(
+                            title: "covid19india.org",
+                            iconPath: AssetConstants.ic_nothing_found,
+                            btnColor: Colors.black12,
+                            btnTextColor: Colors.white,
+                            onClickFunction: (){CommonServices.launchURL(UrlConstants.covid19_org_url);}
+                        )
+                    ),
+                    socialMediaBtn(
+                        ButtonStyleConfig(
+                            title: "Database",
+                            iconPath: AssetConstants.ic_nothing_found,
+                            btnColor: Colors.greenAccent,
+                            btnTextColor: Colors.white,
+                            onClickFunction: (){CommonServices.launchURL(UrlConstants.patient_db_url);}
+                        )
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 20,),
+              ListTile(
+                title: Text('About me: \nName: Sayon Mazumder\nAge: 25\nWant to know more about me?'),
+              ),
+
+              ListTile(
+                title: socialMediaBtn(
+                    ButtonStyleConfig(
+                        title: "LinkedIn",
+                        iconPath: AssetConstants.ic_linkedin_logo,
+                        btnColor: Colors.lightBlue,
+                        btnTextColor: Colors.white,
+                        onClickFunction: (){CommonServices.launchURL(UrlConstants.my_linkedin_profile_link);}
+                    )
+                ),
+              ),
+
+              SizedBox(height: 10,),
+              ListTile(
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Feel free to get in touch with me:"),
+                    socialMediaBtn(
+                        ButtonStyleConfig(
+                            title: "Email",
+                            iconPath: AssetConstants.ic_email_logo,
+                            btnColor: Colors.redAccent,
+                            btnTextColor: Colors.white,
+                            onClickFunction: (){CommonServices.launchURL("mailto:sayan.mywork@gmail.com?subject=COVID19 APP FEEDBACK");}
+                        )
+                    ),
+                  ],
+                ),
+              ),
+
+              ListTile(
+                title: Text("Let's beat Corona Together...",style: TextStyle(fontSize: 16),),
+              ),
+
+
+            ],
+          ),
+        ),
           key: _scafoldKey,
           appBar: AppBar(
-            title: Center(child: Text(S.of(context).text_dashboard_title)),
+            centerTitle:true ,
+            title: Text(S.of(context).text_dashboard_title),
 //          leading: IconButton(
 //            icon: Icon(Icons.arrow_back_ios,color: Colors.white,),
 //            onPressed: () => Navigator.pop(context),
@@ -97,7 +227,15 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                                 fontSize: 22
                             ),),
                             SizedBox(width: 12,),
-                            Text("On: ${coronaResponseData.keyValues[0].lastupdatedtime}")
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                  Text("Last update on:\n${coronaResponseData?.statewise[0]?.lastupdatedtime}"),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -223,7 +361,7 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                            Text("Top Affected", style: TextStyle(
+                            Text("Top Affected States", style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 22
                             ),),
@@ -238,7 +376,7 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                            Text("States & District overview", style: TextStyle(
+                            Text("States & Districts overview", style: TextStyle(
                                 color: Colors.black87,
                                 fontSize: 22
                             ),),
@@ -246,7 +384,7 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
                         ),
                       ),
                       SizedBox(height: 10,),
-                      buildStateWiseDropDownList(coronaResponseData.statewise),
+                      buildStateWiseDropDownList(),
 //                      SizedBox(height: 50,),
 //                    Container(
 //                      height: 120,
@@ -274,75 +412,47 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
     );
   }
 
-  Widget buildStateWiseDropDownList(List<Statewise> stateWiseData){
-    List<Entry> prepareData=<Entry>[];
-    ParsedResponse<Map<String, dynamic>> stateDistrictWiseData = BlocProvider.of<CoronaHomeScreenBloc>(context).stateDistrictWisedata;
 
-    for(int i=0; i<stateWiseData.length; i++){
-      List<Entry> districtData=[];
-      Map<String, dynamic> stateData = stateDistrictWiseData?.data[stateWiseData[i]?.state];
-      StateWiseResponse obj=StateWiseResponse();
-      if(stateData!=null){
-        obj = StateWiseResponse.fromJson(stateData);
-      }
-
-      obj?.districtData?.forEach((k, v)  {
-        StateWiseConfirmed confirmedCountState = StateWiseConfirmed();
-          if(v!=null){
-            confirmedCountState = StateWiseConfirmed.fromJson(v);
-          }
-        districtData.add(
-          Entry(
-               k,
-              CasesTypeData(confirmedCases: confirmedCountState?.confirmed.toString()),
-            <Entry>[
-              Entry(
-                  "End of list",
-                  CasesTypeData(confirmedCases:"bhh"),
-                  <Entry>[]
-              ),
-            ],
-          )
+  Widget buildStateWiseDropDownList(){
+    return StreamBuilder<List<Entry>>(
+      stream: BlocProvider.of<CoronaHomeScreenBloc>(context).stateDistrictWiseDataStream,
+      builder: (context, snapshot) {
+        if(snapshot.hasError) {
+          return Text("something went wrong");
+        }
+        if(!snapshot.hasData){
+          return SizedBox();
+        }
+        List<Entry> stateDistrictData = snapshot.data;
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22),
+          child: Container(
+            height: 300,
+            child: ListView.builder(
+                itemCount: stateDistrictData.length,
+                shrinkWrap: false,
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index){
+                  if(index==0){
+                    return SizedBox();
+                  }
+                  return EntryItem(stateDistrictData[index]);
+                }),
+          ),
         );
-      });
-
-      Entry singleStateEntryData = Entry(
-        stateWiseData[i].state,
-        CasesTypeData(
-            recoveredCases: stateWiseData[i].recovered,
-            deathCases: stateWiseData[i].deaths,
-            confirmedCases: stateWiseData[i].confirmed,
-            activeCases: stateWiseData[i].active
-        ),
-        districtData,
-      );
-      prepareData.add(singleStateEntryData);
-    }
-
-    return Container(
-      height: 300,
-      child: ListView.builder(
-          itemCount: stateWiseData.length,
-          shrinkWrap: true,
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, index){
-            if(index==0){
-              return SizedBox();
-            }
-            return EntryItem(prepareData[index]);
-          }),
+      }
     );
   }
 
   Widget topAffetedStateList(List<Statewise> stateWiseData){
     List<Statewise> topAffectedStateList=[];
-
     //make mist of first 8 top affected states
     for(int i=1; i<=7; i++){
       topAffectedStateList.add(stateWiseData[i]);
     }
     return Container(
-      padding: EdgeInsets.only(left: 22),
+      padding: EdgeInsets.symmetric(horizontal: 22),
       width: double.infinity,
       height: 100,
       child: ListView.builder(
@@ -387,7 +497,6 @@ class _CoronaHomeScreenState extends State<_CoronaHomeScreenInternal> with Commo
 
 // ignore: must_be_immutable
 class TopAffectedStateTile extends StatelessWidget {
-
   String stateName;
   String confirmedCases;
   String activeCases;
@@ -506,57 +615,7 @@ class TopAffectedStateTile extends StatelessWidget {
   }
 }
 
-class CasesTypeData{
-  String confirmedCases;
-  String activeCases;
-  String recoveredCases;
-  String deathCases;
-  CasesTypeData({this.confirmedCases, this.activeCases, this.recoveredCases, this.deathCases});
-}
 
-// One entry in the multilevel list displayed by this app.
-class Entry {
-  Entry(this.stateName, this.casesTypeData, [this.children = const <Entry>[]]);
-  final String stateName;
-  final List<Entry> children;
-  final CasesTypeData casesTypeData;
-}
-
-// The entire multilevel list displayed by this app.
-final List<Entry> data = <Entry>[
-  Entry('Chapter A',
-    CasesTypeData(activeCases: "122", confirmedCases: "12",deathCases: "12",recoveredCases: "12"),
-    <Entry>[
-      Entry('Section A0',
-        CasesTypeData(activeCases: "12", confirmedCases: "12",deathCases: "12",recoveredCases: "12"),
-        <Entry>[
-          Entry(
-              "sub list",
-              CasesTypeData(activeCases: "12", confirmedCases: "12",deathCases: "12",recoveredCases: "12"),
-              <Entry>[]
-          ),
-        ],
-      ),
-      Entry('Section A1', CasesTypeData(activeCases: "12", confirmedCases: "12",deathCases: "12",recoveredCases: "12")),
-      Entry('Section A2', CasesTypeData(activeCases: "12", confirmedCases: "12",deathCases: "12",recoveredCases: "12"),),
-    ],
-  ),
-  Entry('Chapter B',
-    CasesTypeData(activeCases: "12", confirmedCases: "12",deathCases: "12",recoveredCases: "12"),
-    <Entry>[
-      Entry(
-        'Section B0',
-        CasesTypeData(activeCases: "12", confirmedCases: "12",deathCases: "12",recoveredCases: "12"),
-        <Entry>[],
-      ),
-      Entry(
-          'Section B1',
-        CasesTypeData(activeCases: "12", confirmedCases: "12",deathCases: "12",recoveredCases: "12"),
-      ),
-    ],
-  ),
-];
-// Displays one Entry. If the entry has children then it's displayed
 // with an ExpansionTile.
 class EntryItem extends StatelessWidget {
   final Entry entry;
@@ -595,40 +654,6 @@ class EntryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _buildTiles(entry);
-  }
-}
-
-class StateWiseResponse {
-  Map<String, dynamic> districtData;
-
-  StateWiseResponse({this.districtData});
-
-  StateWiseResponse.fromJson(Map<String, dynamic> json) {
-    if(json['districtData']!=null){
-      districtData = json['districtData'];
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    return data;
-  }
-}
-
-class StateWiseConfirmed {
-  int confirmed;
-
-  StateWiseConfirmed({this.confirmed});
-
-  StateWiseConfirmed.fromJson(Map<String, dynamic> json) {
-    if(json['confirmed']!=null){
-      confirmed = json['confirmed'];
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    return data;
   }
 }
 

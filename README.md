@@ -11,7 +11,6 @@
     <img src="https://img.shields.io/github/stars/sayan2107/music-pro?style=for-the-badge" alt="Total downloads on GitHub." /></a>
 <a href="https://www.linkedin.com/in/sayon-mazumder/">
     <img src="https://img.shields.io/badge/Support-Recommed%2FEndorse%20me%20on%20Linkedin-blue?style=for-the-badge&logo=linkedin" alt="Recommend me on LinkedIn" /></a>
-
 # Covir-19 India Mobile App, Build with ❤  Flutter
 Flutter is a cross platform Mobile Application development framework by google.
 'Covir-19 India' is a Android application build with flutter which will help you to find the status of Corona Virus in india. 
@@ -32,3 +31,5 @@ Still Facing Problems? contact me at [LinkedIn](https://www.linkedin.com/in/sayo
 
 Don't forget to star ⭐ the repo 😉, it will keep me motivated to go forward.
 
+## Thanks to
+- <a href="https://www.covid19india.org/">covid19india.org</a>

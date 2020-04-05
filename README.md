@@ -1,16 +1,32 @@
-# corona_trac_helper
+## Preview
+<p float="left">
+  <img src="https://github.com/sayan2107/Corona_tracker/blob/master/screenshots/Screenshot_2020-04-05-15-54-33-13_f3c897f8659a649c8689541e4eb50ead.jpg" width="100" height="170" />
+  <img src="https://github.com/sayan2107/Corona_tracker/blob/master/screenshots/Screenshot_2020-04-05-15-54-45-36_f3c897f8659a649c8689541e4eb50ead.jpg" width="100" height="170"  /> 
+  <img src="https://github.com/sayan2107/Corona_tracker/blob/master/screenshots/Screenshot_2020-04-05-16-28-17-74_f3c897f8659a649c8689541e4eb50ead.jpg" width="100" height="170"  />
+</p>  
 
-A new Flutter project.
+<a href="https://www.linkedin.com/in/sayon-mazumder/">
+    <img src="https://img.shields.io/github/stars/sayan2107/music-pro?style=for-the-badge" alt="Total downloads on GitHub." /></a>
+<a href="https://www.linkedin.com/in/sayon-mazumder/">
+    <img src="https://img.shields.io/badge/Support-Recommed%2FEndorse%20me%20on%20Linkedin-blue?style=for-the-badge&logo=linkedin" alt="Recommend me on LinkedIn" /></a>
 
-## Getting Started
+# Covir-19 Mobile App, Build with ❤ in Flutter
+Flutter is a cross platform Mobile Application development framework by google.
+'Covir-19 India' is a Android application build with flutter which will help you to find the status of Corona Virus in india. 
 
-This project is a starting point for a Flutter application.
+## Setup Process
+Make sure you have Flutter sdk installed in your system along with android studio and system environments are setted up, can visit the following link to visit <a href="https://flutter.dev/docs">flutter docs</a>
+## 1. Clone the repository 
+- git clone [repo]
+## 2. Install the dependencies
+- flutter pub get
+## 3. You are ready to go
+- flutter run  
 
-A few resources to get you started if this is your first Flutter project:
+Facing any problem? you can go through the flutter official documentation to get started <a href="https://flutter.dev/docs/get-started/install">Click here</a>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Still Facing Problems? contact me at [LinkedIn](https://www.linkedin.com/in/sayaon-mazumder/). I will be happy to help.
+
+Don't forget to star ⭐ the repo 😉, it will keep me motivated to go forward.
+

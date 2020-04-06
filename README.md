@@ -9,7 +9,7 @@
 </p>  
 
 <a href="https://www.linkedin.com/in/sayon-mazumder/">
-    <img src="https://img.shields.io/github/stars/sayan2107/music-pro?style=for-the-badge" alt="Total downloads on GitHub." /></a>
+    <img src="https://img.shields.io/github/stars/sayan2107/covid19_india_mobile?style=for-the-badge" alt="Total downloads on GitHub." /></a>
 <a href="https://www.linkedin.com/in/sayon-mazumder/">
     <img src="https://img.shields.io/badge/Support-Recommed%2FEndorse%20me%20on%20Linkedin-blue?style=for-the-badge&logo=linkedin" alt="Recommend me on LinkedIn"/></a>  
     

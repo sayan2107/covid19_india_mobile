@@ -18,7 +18,7 @@ Flutter is a cross platform Mobile Application development framework by google.
 'Covid-19 India' is a Android application build with flutter which will help you to find the status of Corona Virus in india. 
 
 ## Setup Process
-Make sure you have Flutter sdk installed in your system along with android studio and system environments are setted up, can visit the following link to visit <a href="https://flutter.dev/docs">flutter docs</a>
+Make sure you have Flutter sdk installed in your system along with android studio and system environments are setted up, can visit <a href="https://flutter.dev/docs">flutter docs</a> for any reference
 ## 1. Clone the repository 
 - git clone [repo]
 ## 2. Install the dependencies

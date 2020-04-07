@@ -8,7 +8,7 @@
   <img src="https://github.com/sayan2107/Corona_tracker/blob/master/screenshots/Screenshot_2020-04-05-20-21-11-75_f3c897f8659a649c8689541e4eb50ead.jpg" width="200" height="370"  />
 </p>  
 
-<a href="https://www.linkedin.com/in/sayon-mazumder/">
+<a>
     <img src="https://img.shields.io/github/stars/sayan2107/covid19_india_mobile?style=for-the-badge" alt="Total downloads on GitHub." /></a>
 <a href="https://www.linkedin.com/in/sayon-mazumder/">
     <img src="https://img.shields.io/badge/Support-Recommed%2FEndorse%20me%20on%20Linkedin-blue?style=for-the-badge&logo=linkedin" alt="Recommend me on LinkedIn"/></a>  

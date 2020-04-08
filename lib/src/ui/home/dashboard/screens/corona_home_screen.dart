@@ -1,5 +1,5 @@
 import 'package:corona_trac_helper/generated/i18n.dart';
-import 'package:corona_trac_helper/src/infra/network/model/home/corona_response_data.dart';
+import 'package:corona_trac_helper/src/data/model/home/corona_response_data.dart';
 import 'package:corona_trac_helper/src/ui/common/services/common_services.dart';
 import 'package:corona_trac_helper/src/ui/common/utils/text_utils.dart';
 import 'package:corona_trac_helper/src/ui/home/dashboard/bloc/corona_home_screen_bloc.dart';

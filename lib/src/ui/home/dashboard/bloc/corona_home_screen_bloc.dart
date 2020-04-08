@@ -1,6 +1,5 @@
-import 'package:corona_trac_helper/src/data/model/home/music_data/music_model.dart';
 import 'package:corona_trac_helper/src/data/model/parsed_response.dart';
-import 'package:corona_trac_helper/src/infra/network/model/home/corona_response_data.dart';
+import 'package:corona_trac_helper/src/data/model/home/corona_response_data.dart';
 import 'package:corona_trac_helper/src/ui/home/dashboard/bloc/corona_home_screen_events.dart';
 import 'package:corona_trac_helper/src/ui/home/dashboard/bloc/corona_home_screen_repository.dart';
 import 'package:corona_trac_helper/src/ui/home/dashboard/models/corona_home_helper_models.dart';
@@ -94,11 +93,7 @@ class CoronaHomeScreenBloc extends BaseBloc {
 
      _stateDistrictWiseDataStreamController.sink.add(prepareData);
    }
-
-
-  void redirectToMusicDetails(Results result) {
-    _uiEventStreamController.add(NavigateToDetails(result));
-  }
+   
 
 
   @override

@@ -1,7 +1,6 @@
-import 'package:corona_trac_helper/src/infra/network/model/home/corona_response_data.dart';
+import 'package:corona_trac_helper/src/data/model/home/corona_response_data.dart';
 import 'package:dio/dio.dart';
 import 'package:corona_trac_helper/src/base/base_repository.dart';
-import 'package:corona_trac_helper/src/data/model/home/music_data/music_model.dart';
 import 'package:corona_trac_helper/src/data/model/parsed_response.dart';
 import 'package:corona_trac_helper/src/data/web_services.dart';
 import 'package:corona_trac_helper/src/utility/url_constants.dart';
